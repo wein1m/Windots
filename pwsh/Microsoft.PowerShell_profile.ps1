@@ -360,40 +360,40 @@ function Get-FileMetaData
     
     .EXAMPLE 
         Get-FileMetaData -File "c:\temp\image.jpg" 
- 
+
         Get information about an image file. 
- 
+
     .EXAMPLE 
         Get-FileMetaData -File "c:\temp\image.jpg" | Select Dimensions 
- 
+
         Show the dimensions of the image. 
- 
+
     .EXAMPLE 
         Get-ChildItem -Path .\ -Filter *.exe | foreach {Get-FileMetaData -File $_.Name | Select Name,"File version"} 
- 
+
         Show the file version of all binary files in the current folder. 
     #> 
- 
+
     param(
       [Parameter(Mandatory=$True)]
       [string]$File
     ) 
- 
+
     if(!(Test-Path -Path $File)) { 
       write-host -foregroundColor Magenta "Invalid filename, bunny~"
       break
     } 
- 
+
     $tmp = Get-ChildItem $File 
     $pathname = $tmp.DirectoryName 
     $filename = $tmp.Name 
- 
+
     $hash = @{}
     try{
       $shellobj = New-Object -ComObject Shell.Application 
       $folderobj = $shellobj.namespace($pathname) 
       $fileobj = $folderobj.parsename($filename) 
-      
+
       for($i=0; $i -le 294; $i++) { 
         $name = $folderobj.getDetailsOf($null, $i);
         if($name){
@@ -414,6 +414,41 @@ function Get-FileMetaData
     }
 
     return New-Object PSObject -Property $hash
+}
+
+function hr {
+  param(
+    [Parameter(ValueFromRemainingArguments = $true)]
+    [string[]]$chars = @("#")
+  )
+
+  $cols = $Host.UI.RawUI.WindowSize.Width;
+
+  if ($cols -le 0) {
+    $cols = 80;
+  }
+
+  forEach($c in $chars) {
+    echo ($c * $cols).substring(0,$cols);
+  }
+}
+
+function cdd { 
+  param(
+    [string]$arg
+    )
+
+  if (!$arg) {
+    write-host -foregroundColor Magenta "Invalid filename, bunny~";
+    break;
+  }
+
+  try {
+    cd $arg && ls;
+  }
+  catch {
+    write-host -foregroundColor Magenta "ERRORRR OCCURREDDD~~ $($_.Exception.Message)";
+  }
 }
 
 # change the command using Set-Alias
