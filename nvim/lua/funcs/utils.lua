@@ -1,21 +1,5 @@
 local core = require("funcs/core")
 
--- setup keymaps
-local function map(mode, lhs, rhs, opts)
-  vim.keymap.set(
-    mode,
-    lhs,
-    rhs,
-    vim.tbl_deep_extend("force", { noremap = true }, opts or {})
-  )
-end
-
--- remove keymaps
--- returns true if a keymap was successfully removed
-local function unmap(mode, lhs, options)
-  return pcall(vim.keymap.del, mode, lhs, options or {})
-end
-
 -- set qflist and open
 local function qf_populate(lines, opts)
   if not lines or #lines == 0 then return end
@@ -112,8 +96,6 @@ local function run_command(key, opts)
 end
 
 return {
-  map         = map,
-  unmap       = unmap,
   qf_populate = qf_populate,
   notify      = notify,
   add_command = add_command,

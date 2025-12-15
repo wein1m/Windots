@@ -1,4 +1,3 @@
-local bo = vim.bo
 local fn = vim.fn
 
 local function selectionCount()
@@ -21,8 +20,6 @@ end
 --------------------------------------------------------------------------------
 
 local bottomSeparators = { left = "", right = "" }
-local topSeparators = { left = "", right = "" }
-local emptySeparators = { left = "", right = "" }
 
 local lualineConfig = {
   sections = {

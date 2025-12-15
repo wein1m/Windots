@@ -13,7 +13,7 @@ return {
     lazy = false,
     priority = 950,
     config = function()
-      require('mason').setup({ ui = { border = 'rounded' } })
+      require('mason').setup({ ui = { border = 'double', backdrop = 60, width = 0.6, height = 0.7 } })
     end,
   },
 
@@ -63,9 +63,6 @@ return {
 
       -- setup lsps using built-in vim.lsp.config() and vim.lsp.enable()
       require("lsp/init")
-
-      -- setup custom LSP handlers
-      require("lsp/handlers")
 
       -- configure diagnostics
       local symbols = session.config.symbols

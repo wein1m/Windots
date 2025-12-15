@@ -1,11 +1,7 @@
--- Load lspconfig to add server configs to Neovim's runtime path
--- This makes server configurations available to vim.lsp.config()
 require('lspconfig')
 
 local setup_buffer = require("lsp/buffer_setup")
 
--- {{{ LspAttach autocmd - replaces on_attach
--- This is the new Neovim 0.11+ way to handle LSP buffer setup
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
   callback = function(args)
@@ -73,8 +69,8 @@ table.insert(runtime_path, 'lua/?/init.lua')
 vim.lsp.config('lua_ls', {
   settings = {
     Lua = {
-      runtime = { version = "LuaJIT", path = runtime_path },
-      diagnostics = { globals = { "vim", "use", "packer_plugins", "require", "session" } },
+      -- runtime = { version = "LuaJIT", path = runtime_path },
+      diagnostics = { globals = { "vim", "use", "packer_plugins", "require", "session", "Snacks" } },
       telemetry = { enable = false },
       hint = { enable = true },
       workspace = {
