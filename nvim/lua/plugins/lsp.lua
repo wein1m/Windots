@@ -26,7 +26,7 @@ return {
     config = function()
       require('mason-lspconfig').setup({
         -- ensure_installed = { 'pyright', 'clangd', 'lua_ls'},
-        ensure_installed = { 'pyright', 'clangd', 'lua_ls', 'efm', 'ts_ls', 'eslint' },
+        ensure_installed = { 'pyright', 'clangd', 'lua_ls', 'efm', 'ts_ls', 'eslint', "powershell_es" },
         automatic_installation = true,
       })
     end,

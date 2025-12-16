@@ -11,7 +11,7 @@ local function safeRequire(module)
   end
 end
 
-safeRequire("config.lazy")
 safeRequire("config.keymaps")
 safeRequire("config.options")
+safeRequire("config.lazy")
 safeRequire("funcs/session")
