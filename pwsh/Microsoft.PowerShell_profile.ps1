@@ -465,7 +465,7 @@ function cdd {
 function whereis { 
   param(
     [string]$arg
-    )
+  )
 
   if (!$arg) {
     write-host -foregroundColor Magenta "huh? where's what?";
@@ -481,6 +481,48 @@ function whereis {
   }
   catch {
     write-host -foregroundColor Magenta "ERRORRR OCCURREDDD~~ $($_.Exception.Message)";
+  } }
+
+# tbh i dont know what to name this cuz komorebi seems too long, so~
+function komom {
+  Param(
+    [Alias('n')]
+    [switch]$stop
+  )
+
+  foreach ($arg in $args) {
+    # the regex to accept only 1 word (ofc cuz it's flag lmao)
+    if ($arg -match '^-[a-zA-Z]+$' -and $arg -ne '-n' -or '-stop') {
+      Write-host "❌ What's that, $($arg)? That's not a valid flag, silly. Only use -stop or -n, got it?" -ForegroundColor Cyan
+      return
+    }
+  }
+
+  try {
+    if(!$stop) {
+      komorebic start --whkd | Remove-WriteHost
+      yasbc start
+      clearl
+    }
+    else {
+      $check = read-host "Are you really really sure to stop komorebi & yasb (y/n)?".ToLower()
+      switch ($check) {
+        y {
+          komorebic stop --whkd
+          yasbc stop
+          clearl
+        }
+        n {
+          write-host "hehe~ i know you're still in love with them~" -ForegroundColor Cyan
+        }
+        Default {
+          Write-host "❌ What's that, $($_)? That's not a valid flag, silly. Only use y or n, got it?" -ForegroundColor Cyan
+        }
+      }
+    }
+  }
+  catch {
+    Write-Host -ForegroundColor Magenta "HAHA!! $($_.Exception.Message)"
   }
 }
 
@@ -529,6 +571,9 @@ fastfetch
 ######## NOTE ########
 # to get what exception does the error thrown, use
 # write-host -foregroundColor cyan $_.Exception.GetType();
+#
+# pwsh command history
+# $($env:APPDATA)\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
 ######################
 echo "TODO: change command table into hash map in our shell project; play with pwsh get-process from manpage"
 
