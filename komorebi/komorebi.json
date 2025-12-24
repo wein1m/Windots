@@ -1,0 +1,60 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.39/schema.json",
+  "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
+  "window_hiding_behaviour": "Cloak",
+  "cross_monitor_move_behaviour": "Insert",
+  "default_workspace_padding": 12,
+  "default_container_padding": 2,
+  "border": true,
+  "border_width": 5,
+  "border_offset": 0,
+  "border_style": "Rounded",
+  "stackbar": {
+    "mode": "Never"
+  },
+  "floating_window_aspect_ratio": "Standard",
+  "floating_layer_behaviour": "Float",
+  "animation": {
+    "enabled": true,
+    "duration": 150,
+    "style": "EaseInOutSine"
+  },
+  "theme": {
+    "palette": "Base16",
+    "name": "Caroline",
+    "unfocused_border": "Base01",
+    "bar_accent": "Base08"
+  },
+  "transparency_ignore_rules": [
+    {
+      "kind": "Title",
+      "id": "DesktopMate"
+    }
+  ],
+  "ignore_rules": [
+    {
+      "kind": "Title",
+      "id": "WaitForMeKomorebi",
+      "matching_strategy": "Contains"
+    },
+    {
+      "kind": "Title",
+      "id": "osu!",
+      "matching_strategy": "Contains"
+    }
+  ],
+  "monitors": [
+    {
+      "wallpaper": {
+        "generate_theme": true,
+        "path": "C:\\Users\\toya\\AppData\\Roaming\\Microsoft\\Windows\\Themes\\WallpaperEngineLockOverride.jpg"
+      },
+      "workspaces": [
+        {
+          "name": "1",
+          "layout": "BSP"
+        }
+      ]
+    }
+  ]
+}
