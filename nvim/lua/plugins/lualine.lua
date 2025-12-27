@@ -10,16 +10,12 @@ local function selectionCount()
 end
 
 local function clock()
-  if vim.opt.columns:get() < 110 or vim.opt.lines:get() < 25 then return "" end
-
   local time = tostring(os.date()):sub(12, 16)
   if os.time() % 2 == 1 then time = time:gsub(":", " ") end -- make the `:` blink
   return time
 end
 
 --------------------------------------------------------------------------------
-
-local bottomSeparators = { left = "", right = "" }
 
 local lualineConfig = {
   sections = {
@@ -39,7 +35,7 @@ local lualineConfig = {
     },
     globalstatus = true,
     component_separators = { left = "", right = "" },
-    section_separators = bottomSeparators,
+    section_separators = "",
   },
 }
 

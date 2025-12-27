@@ -47,7 +47,6 @@ vim.lsp.config('clangd', {
   cmd = {
     "clangd",
     "--background-index",
-    "--clang-tidy",
     "--header-insertion=iwyu",
     "--completion-style=detailed",
   },
@@ -95,20 +94,20 @@ local languages = {
   python = { require('efmls-configs.formatters.autopep8'), },
   markdown = { require('efmls-configs.formatters.prettier'), },
 
-  -- c = {
-  --   {
-  --     formatCommand = "clang-format --assume-filename='${INPUT}'",
-  --     formatStdin = true,
-  --   },
-  -- },
-  -- cpp = {
-  --   {
-  --     formatCommand = "clang-format --assume-filename='${INPUT}'",
-  --     formatStdin = true,
-  --   },
-  -- },
-  c = vim.tbl_deep_extend('force', clike, {}),
-  cpp = vim.tbl_deep_extend('force', clike, {}),
+  c = {
+    {
+      formatCommand = "clang-format",
+      formatStdin = true,
+    }
+  },
+  cpp = {
+    {
+      formatCommand = "clang-format",
+      formatStdin = true,
+    }
+  },
+  -- c = vim.tbl_deep_extend('force', clike, {}),
+  -- cpp = vim.tbl_deep_extend('force', clike, {}),
   cuda = vim.tbl_deep_extend('force', clike, {}),
 }
 

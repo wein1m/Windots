@@ -26,7 +26,7 @@ return {
     config = function()
       require('mason-lspconfig').setup({
         -- ensure_installed = { 'pyright', 'clangd', 'lua_ls'},
-        ensure_installed = { 'pyright', 'clangd', 'lua_ls', 'efm', 'ts_ls', 'eslint', "powershell_es" },
+        ensure_installed = { 'pyright', 'jsonls', 'clangd', 'lua_ls', 'efm', 'ts_ls', 'eslint', "powershell_es" },
         automatic_installation = true,
       })
     end,
@@ -57,7 +57,7 @@ return {
     event = 'BufReadPre',
     config = function()
       require('mason-null-ls').setup({
-        ensure_installed = { 'autopep8', 'prettier', 'cpplint' },
+        ensure_installed = { 'autopep8', 'prettier', 'cpplint', 'clang-format' },
         automatic_installation = true
       })
 

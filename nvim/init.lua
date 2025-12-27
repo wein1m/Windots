@@ -14,4 +14,5 @@ end
 safeRequire("config.keymaps")
 safeRequire("config.options")
 safeRequire("config.lazy")
+safeRequire("theme")
 safeRequire("funcs/session")
