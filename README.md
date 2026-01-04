@@ -11,6 +11,7 @@ This github repo containing several configurations, including:
 - Fastfetch (to flex🐇)
 - FlowLauncher (app launcher)
 - Komorebi (windows manager)
+- GlazeWM (windows manager)
 - Neovim (text editor)
 - Oh-My-Posh (prompt engine)
 - Powershell Core (shell)
@@ -24,6 +25,7 @@ This github repo containing several configurations, including:
 <img src="/screenshots/FlowLauncher.webp" width="750" alt="FlowLauncher preview"/>
 <img src="/screenshots/Terminal.webp" width="750" alt="Terminal preview"/> 
 <img src="/screenshots/vscode.webp" width="750" alt="Visual Studio Code preview"/>
+<img src="/screenshots/Browser.webp" width="750" alt="Zen Browser preview"/>
 <img src="/screenshots/Discord.webp" width="750" alt="Discord preview"/>
 <img src="/screenshots/Spotify.webp" width="750" alt="Spotify preview"/>
 
