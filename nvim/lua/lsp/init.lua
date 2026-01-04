@@ -125,26 +125,26 @@ vim.lsp.config('efm', {
 -- }}}
 
 -- {{{ powershell-editor-services setup
-local bundle_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services"
-local command_fmt =
-[[& '%s/PowerShellEditorServices/Start-EditorServices.ps1' -BundledModulesPath '%s' -LogPath '%s/powershell_es.log' -SessionDetailsPath '%s/powershell_es.session.json' -FeatureFlags @() -AdditionalModules @() -HostName nvim -HostProfileId 0 -HostVersion 1.0.0 -Stdio -LogLevel Normal]]
-local temp_path = vim.fn.stdpath("cache")
-local command = command_fmt:format(bundle_path, bundle_path, temp_path, temp_path)
-
-vim.lsp.config("powershell_es", {
-  filetypes = { "ps1" },
-  bundle_path = vim.fn.stdpath("data")
-      .. "/mason/packages/powershell-editor-services",
-  cmd = { "pwsh", "-NoLogo", "-Command", command },
-
-  settings = {
-    powershell = {
-      diagnostics = {
-        disabled = { "PSAvoidUsingCmdletAliases" }
-      }
-    }
-  }
-})
+-- local bundle_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services"
+-- local command_fmt =
+-- [[& '%s/PowerShellEditorServices/Start-EditorServices.ps1' -BundledModulesPath '%s' -LogPath '%s/powershell_es.log' -SessionDetailsPath '%s/powershell_es.session.json' -FeatureFlags @() -AdditionalModules @() -HostName nvim -HostProfileId 0 -HostVersion 1.0.0 -Stdio -LogLevel Normal]]
+-- local temp_path = vim.fn.stdpath("cache")
+-- local command = command_fmt:format(bundle_path, bundle_path, temp_path, temp_path)
+--
+-- vim.lsp.config("powershell_es", {
+--   filetypes = { "ps1" },
+--   bundle_path = vim.fn.stdpath("data")
+--       .. "/mason/packages/powershell-editor-services",
+--   cmd = { "pwsh", "-NoLogo", "-Command", command },
+--
+--   settings = {
+--     powershell = {
+--       diagnostics = {
+--         disabled = { "PSAvoidUsingCmdletAliases" }
+--       }
+--     }
+--   }
+-- })
 -- }}}
 
 -- {{{ null-ls setup
@@ -165,6 +165,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end
 })
 -- }}}
+vim.lsp.handlers["textDocument/hover"] =
+    vim.lsp.with(vim.lsp.handlers.hover, {
+      border = "rounded",
+    })
+
 
 -- {{{ Enable all LSP servers
 vim.lsp.enable({

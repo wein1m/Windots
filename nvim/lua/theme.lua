@@ -122,6 +122,13 @@ set_hl("WinSeparator", { fg = colors.base03 })
 -- popups, floating windows
 set_hl("NormalFloat", { fg = colors.base05, bg = colors.base00 })
 set_hl("FloatBorder", { fg = colors.base03, bg = colors.base00 })
+vim.api.nvim_create_autocmd('ColorScheme', {
+  callback = function()
+    set_hl('LspReferenceTarget', { border = "rounded" })
+    set_hl("LspFloatWinNormal", { link = "NormalFloat" })
+    set_hl("LspFloatWinBorder", { link = "FloatBorder" })
+  end,
+})
 
 -- popup menu
 set_hl("Pmenu", { fg = colors.base05, bg = colors.base00 })    -- Popup menu normal item
@@ -134,6 +141,7 @@ set_hl("TelescopeBorder", { fg = colors.base03 })
 
 -- blink
 set_hl("BlinkCmpMenuBorder", { fg = colors.base03, bg = colors.base00 })
+set_hl("BlinkCmpDocBorder", { fg = colors.base03, bg = colors.base00 })
 
 -- misc.
 set_hl("DiagnosticFloat", { link = "NormalFloat" })
