@@ -14,6 +14,7 @@ set-alias rar "c:\Program Files\WinRAR\WinRAR.exe"
 Set-Alias gpp g++
 Set-Alias wth wtf
 Set-Alias omp oh-my-posh
+Set-Alias yabc yasbc
 
 function clearo { . $PROFILE } # Reload Profile
 function rmdirs { remove-item -r -fo $args } 
@@ -285,7 +286,7 @@ function mkdird {
 function remove-vscLogo {
     <#
     .SYNOPSIS
-        Remove the logo from Visual Studio Code titlebar.
+        Patch VS Code CSS to remove the logo at top left corner
     #> 
     param(
         [alias("n")]
@@ -790,7 +791,8 @@ function komom {
 
     try {
         if(!$stop) {
-            komorebic start --whkd 
+            glazewm start
+            # komorebic start --whkd 
             yasbc start
             clearl
         }
@@ -798,7 +800,8 @@ function komom {
             $check = read-host "Are you really really sure to stop komorebi & yasb (y/n)?".ToLower()
             switch ($check) {
                 y {
-                    komorebic stop --whkd
+                    glazewm stop
+                    # komorebic stop --whkd
                     yasbc stop
                     clearl
                 }
@@ -815,6 +818,78 @@ function komom {
     }
     catch {
         Write-Host -ForegroundColor Magenta "HAHA!! $($_.Exception.Message)"
+    }
+}
+
+function yank {
+    <#
+    .SYNOPSIS
+        Get content of a file and put them into clipboard.
+
+    .EXAMPLE
+        yank foo.txt
+
+        get the content inside foo.txt and put them inside your clipboard.
+    #> 
+
+    Param (
+        [string]$file
+    )
+    
+    try {
+        Get-Content $file -ErrorAction stop | scb;
+    }
+    catch [System.InvalidOperationException] {
+        write-host -foregroundColor Cyan "…I can’t read a folder, bun."
+    }
+    catch [System.Management.Automation.ItemNotFoundException] {
+        write-host -foregroundColor Cyan "Cannot find '$($file)'.";
+        write-host -foregroundColor Cyan "...It's not hiding. it just doesn't exist."
+    }
+    catch [System.Management.Automation.ParameterBindingException] {
+        write-host -foregroundColor Magenta "I can't read your mind, bun.. tell me what you want to yank.`n"
+        write-host "Get content of a file and put them into clipboard `n"
+        write-host "Usage: yank [file] `n"
+    }
+    catch {
+        write-host -foregroundColor Magenta "ERRORRR OCCURREDDD~~ $($_.Exception.Message)";
+        write-host -foregroundColor cyan $_.Exception.GetType();
+    }
+}
+
+function put {
+    <#
+    .SYNOPSIS
+        Get the latest content from clipboard and put them into destination file.
+
+    .EXAMPLE
+        put bar.txt
+
+        Get the latest clipboard content and put it inside bar.txt.
+    #> 
+
+    Param (
+        [string]$file
+    )
+    
+    try {
+        gcb | set-content $file
+    }
+    catch [System.InvalidOperationException] {
+        write-host -foregroundColor Cyan "…I can’t read a folder, bun."
+    }
+    catch [System.Management.Automation.ItemNotFoundException] {
+        write-host -foregroundColor Cyan "Cannot find '$($file)'.";
+        write-host -foregroundColor Cyan "...It's not hiding. it just doesn't exist."
+    }
+    catch [System.Management.Automation.ParameterBindingException] {
+        write-host -foregroundColor Magenta "I can't read your mind, bun.. tell me what you want to put.`n"
+        write-host "Get content of a file and put them into clipboard `n"
+        write-host "Usage: yank [file] `n"
+    }
+    catch {
+        write-host -foregroundColor Magenta "ERRORRR OCCURREDDD~~ $($_.Exception.Message)";
+        write-host -foregroundColor cyan $_.Exception.GetType();
     }
 }
 
@@ -835,7 +910,22 @@ oh-my-posh init pwsh --config $style_path | Invoke-Expression
 clear
 fastfetch
 
+$PSReadLineOptions = @{
+    EditMode = "Vi"
+    Colors = @{
+        "Operator"         = "`e[32m" # Green
+        "Parameter"        = "`e[36m" # Cyan
+        "String"           = "`e[35m" # Purple
+        "Command"          = "`e[34m" # Blue
+        "Variable"         = "`e[37m" # White
+        "Comment"          = "`e[38;5;244m" # Gray
+        "InlinePrediction" = "`e[38;5;244m" # Gray
+    }
+}
 
+$PSStyle.FileInfo.Directory = "`e[35;1m"
+
+Set-PSReadLineOption @PSReadLineOptions
 # ❥ Notes (for me)
 # ───────────────--------------------------------------------------------───────────────────────────🐰
 

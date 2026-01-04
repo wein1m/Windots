@@ -7,8 +7,10 @@
   "default_container_padding": 2,
   "border": true,
   "border_width": 5,
-  "border_offset": 0,
+  "border_offset": -5,
   "border_style": "Rounded",
+  "transparency": true,
+  "transparency_alpha": 250,
   "stackbar": {
     "mode": "Never"
   },

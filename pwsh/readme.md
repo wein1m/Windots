@@ -20,7 +20,7 @@ It mainly consists of functions and alises to make my work environment enjoyable
 
 ## ⚠️ Notes Before Using
 
-* Many paths are **hard‑coded** for my machine
+* Some paths are **hard‑coded** for my machine
 * Windows + PowerShell 7+ is assumed
 * You’re encouraged to copy **parts**, not the whole profile. (but if you want, go for it lol~)
 
@@ -38,7 +38,9 @@ Below is a categorized overview of **everything** defined in my `profile.ps1`.
 * `rmdirs` — remove directories recursively (`rm -r -fo` wrapper)
 * `get-size` — show human‑readable directory size (`KiB`, `MiB`, `GiB`)
 * `gpath` — copy current working directory to clipboard
-- `whereis` - locate the executable file's path 
+* `whereis` - locate the executable file's path
+* `yank` — Get content of a file and put them into clipboard.
+* `put` - Get the latest content from clipboard and put them into destination file
 
 ---
 
@@ -62,7 +64,7 @@ also, don't forget to put the executable path to the PATH env or put it into var
 * `remove-vscLogo` — patch VS Code CSS to remove the logo at top left corner
 * `clangd` — generate `.clangd` config from predefined presets
 * `pwsh-big` — open Windows Terminal centered with large size (i usually use 80x17)
-* `komom` — start komorebi & yasb, support `-stop` or `-n` to stop them
+* `komom` — start glazewm & yasb, support `-stop` or `-n` to stop them
 
 ---
 
@@ -72,25 +74,13 @@ also, don't forget to put the executable path to the PATH env or put it into var
 * `Get-FileMetaData` — extract extended file metadata using Windows Shell
 * `shutdowns` — shutdown the system immediately
 * `restart` — restart the system immediately
-* `connect-home` — connect to predefined Wi‑Fi network
-* `connect-phone` — connect to phone hotspot
-
----
-
-### External Tool Wrappers
-
-* `spotify` — run `spicetify auto` with lovely feedback🐰
-* `download` — run custom Python TikTok downloader
-* `compress` — run custom Python file compression script
-* `mai` — ask questions to a local LLM (Ollama), supports `-s` simple mode
-* `maii` — shorthand for `ollama run mai`
 
 ---
 
 ### Others (?)
 
 * `get-func` — print the source of my defined function
-* `hr` — draw horizontal rules relative to terminal width
+* `hr` — draw horizontal ruler relative to terminal width
 * `clearl` — clear screen and run `fastfetch`
 * `clearo` — reload the PowerShell profile
 * `ompSimple` — switch to a minimal Oh‑My‑Posh theme
@@ -109,3 +99,5 @@ Anything involving arguments or logic becomes a function.
 * `rar` → `WinRAR.exe`
 * `gpp` → `g++`
 * `wth` → `wtf`
+* `omp` → `oh-my-posh`
+* `yabc` → `yasbc`
