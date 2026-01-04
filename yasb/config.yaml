@@ -18,7 +18,7 @@ bars:
       dark_mode: false
       border_color: "System"
     window_flags:
-      always_on_top: true
+      always_on_top: false
       windows_app_bar: true
     dimensions:
       width: "100%"
@@ -31,6 +31,8 @@ bars:
     widgets:
       left: [
         "home",
+        "glazewm_workspaces",
+        "glazewm_tiling_direction",
         "komorebi_workspaces",
         "komorebi_active_layout",
         "active_window",
@@ -107,6 +109,17 @@ widgets:
       on_left: "toggle_calendar"
       on_middle: "context_menu"
       on_right: "toggle_label"
+  glazewm_workspaces:
+    type: "glazewm.workspaces.GlazewmWorkspacesWidget"
+    options:
+      hide_empty_workspaces: false
+      hide_if_offline: true
+    animation: true
+  glazewm_tiling_direction:
+    type: "glazewm.tiling_direction.GlazewmTilingDirectionWidget"
+    options:
+      horizontal_label: "\udb81\udce1"
+      vertical_label: "\udb81\udce2"
   komorebi_workspaces:
     type: "komorebi.workspaces.WorkspaceWidget"
     options:

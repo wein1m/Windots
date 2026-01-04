@@ -164,8 +164,7 @@
     border: 1px solid var(--surface);
 }
 .komorebi-workspaces {
-    border-top-right-radius: 14px;
-    border-bottom-right-radius: 14px;
+    border-radius: 14px;
     margin-left: 4px;
     padding: 0 4px 0 0;
 }
@@ -201,6 +200,64 @@ komorebi-workspaces .ws-btn {
     height: 10px;
     margin: 0 4px;
     border-radius: 5px;
+}
+
+
+/* -------🐰 GlazeWM 🐰------- */ 
+.glazewm-workspaces .widget-container,
+.glazewm-active-layout .widget-container {
+    background-color: #15161f;
+    margin: 3px 0 3px 0;
+    padding: 0 4px;
+    border-radius: 12px;
+    border: 1px solid var(--surface);
+}
+.glazewm-workspaces {
+    border-radius: 14px;
+    margin-left: 4px;
+    padding: 0 4px 0 0;
+}
+.glazewm-workspaces .ws-btn {
+    color: transparent;
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--lavender);
+    border-radius: 5px;
+    margin: 0 4px;
+    font-size: 1px;
+}
+.glazewm-workspaces .ws-btn.populated {
+    color: transparent;
+    width: 10px;
+    height: 10px;
+    background-color: var(--lavender);
+    border-radius: 5px;
+    margin: 0 4px;
+    font-size: 1px;
+}
+.glazewm-workspaces .ws-btn.focused_populated,
+.glazewm-workspaces .ws-btn.focused_empty{
+    color: transparent;
+    background-color: var(--purple);
+    width: 36px;
+    max-width: 36px;
+    height: 10px;
+    margin: 0 4px;
+    border-radius: 5px;
+}
+
+.glazewm-tiling-direction {
+    background-color: transparent;
+    padding: 0;
+}
+.glazewm-tiling-direction .btn {
+    font-size: 18px;
+    width: 14px;
+    color: var(--lavender);
+    padding: 0 3px;
+    border: 1px solid var(--surface);
+    border-radius: 10px;
+    background: #15161f;
 }
 
 
