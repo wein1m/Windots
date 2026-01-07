@@ -15,6 +15,7 @@ Set-Alias gpp g++
 Set-Alias wth wtf
 Set-Alias omp oh-my-posh
 Set-Alias yabc yasbc
+Set-Alias pipes pipes-rs
 
 function clearo { . $PROFILE } # Reload Profile
 function rmdirs { remove-item -r -fo $args } 
@@ -85,27 +86,27 @@ function touch {
 function open {
     <#
     .SYNOPSIS
-        Open URL using Brave
+        Open URL using Zen
 
     .EXAMPLE 
         open google.com
 
-        Open up google.com on Brave Browser
+        Open up google.com on Zen Browser
     #> 
     Param ( [string[]]$url )
-    start-process brave $url
+    start-process zen $url
 }
 
 function search {
     <#
     .SYNOPSIS
-        Brave search with free‑form queries
+        Zen search with free‑form queries
 
     .NOTES
-        Remember to change to whatever search engine you're enjoy using (or keep it brave if you want it too)
+        Remember to change to whatever search engine you're enjoy using (or keep it zen if you want it too)
         
     .DESCRIPTION
-        Open up a new Brave browser instance if not yet opened, or opened a new tab if a brave browser has already opened.
+        Open up a new Zen browser instance if not yet opened, or opened a new tab if a zen browser has already opened.
         You can typed the search queries without wrapping them using quotes or whatsoever, since it collects all the arguments
         passed as a whoel string.
 
@@ -121,7 +122,7 @@ function search {
 
     $fullQuery = $query -join ' '
     $url = "https://search.brave.com/search?q=$([uri]::EscapeDataString($fullQuery))"
-    start brave $url
+    start zen $url
 }
 
 function wtf {
@@ -130,10 +131,10 @@ function wtf {
         Search prefixed with “wtf …”
 
     .NOTES
-        Remember to change to whatever search engine you're enjoy using (or keep it brave if you want it too)
+        Remember to change to whatever search engine you're enjoy using (or keep it zen if you want it too)
         
     .DESCRIPTION
-        Open up a new Brave browser instance if not yet opened, or opened a new tab if a brave browser has already opened.
+        Open up a new Zen browser instance if not yet opened, or opened a new tab if a zen browser has already opened.
         You can typed the search queries without wrapping them using quotes or whatsoever, since it collects all the arguments
         passed as a whoel string.
 
@@ -149,7 +150,7 @@ function wtf {
     
     $fullQuery = 'wtf ' + $query -join ' '
     $url = "https://search.brave.com/search?q=$([uri]::EscapeDataString($fullquery))"
-    start brave $url
+    start zen $url
 }
 
 function howtf {
@@ -158,10 +159,10 @@ function howtf {
         Search prefixed with “how tf …”
 
     .NOTES
-        Remember to change to whatever search engine you're enjoy using (or keep it brave if you want it too)
+        Remember to change to whatever search engine you're enjoy using (or keep it zen if you want it too)
         
     .DESCRIPTION
-        Open up a new Brave browser instance if not yet opened, or opened a new tab if a brave browser has already opened.
+        Open up a new Zen browser instance if not yet opened, or opened a new tab if a zen browser has already opened.
         You can typed the search queries without wrapping them using quotes or whatsoever, since it collects all the arguments
         passed as a whoel string.
 
@@ -177,7 +178,7 @@ function howtf {
 
     $fullQuery = 'how tf ' + $query -join ' '
     $url = "https://search.brave.com/search?q=$([uri]::EscapeDataString($fullquery))"
-    start brave $url
+    start zen $url
 }
 
 function why {
@@ -186,10 +187,10 @@ function why {
         Search prefixed with “why …”
 
     .NOTES
-        Remember to change to whatever search engine you're enjoy using (or keep it brave if you want it too)
+        Remember to change to whatever search engine you're enjoy using (or keep it zen if you want it too)
         
     .DESCRIPTION
-        Open up a new Brave browser instance if not yet opened, or opened a new tab if a brave browser has already opened.
+        Open up a new Zen browser instance if not yet opened, or opened a new tab if a zen browser has already opened.
         You can typed the search queries without wrapping them using quotes or whatsoever, since it collects all the arguments
         passed as a whoel string.
 
@@ -205,7 +206,7 @@ function why {
 
     $fullQuery = 'why ' + $query -join ' '
     $url = "https://search.brave.com/search?q=$([uri]::EscapeDataString($fullquery))"
-    start brave $url
+    start zen $url
 }
 
 
@@ -215,19 +216,19 @@ function translate {
         Open Google Translate (EN -> ID), supports `-r` for reverse mode (ID -> EN)
 
     .DESCRIPTION
-        Open up a new Brave browser instance if not yet opened, or opened a new tab if a brave browser has already opened.
+        Open up a new Zen browser instance if not yet opened, or opened a new tab if a zen browser has already opened.
         You can typed the search queries without wrapping them using quotes or whatsoever, since it collects all the arguments
         passed as a whoel string.
 
     .EXAMPLE 
         translate chicken
 
-        Open up Brave then search translation from EN to ID (chicken -> ayam)
+        Open up Zen then search translation from EN to ID (chicken -> ayam)
 
     .EXAMPLE 
         translate -r ayam
 
-        Open up Brave then search translation from ID to EN (ayam -> chicken)
+        Open up Zen then search translation from ID to EN (ayam -> chicken)
     #> 
     [CmdletBinding()]
     Param (
@@ -247,7 +248,7 @@ function translate {
         $url = "https://translate.google.com/?sl=en&tl=id&text=$([uri]::EscapeDataString($fullQuery))&op=translate" 
     }
 
-    start brave $url
+    start zen $url
 }
 
 function download {
@@ -922,10 +923,37 @@ $PSReadLineOptions = @{
         "InlinePrediction" = "`e[38;5;244m" # Gray
     }
 }
+Set-PSReadLineOption @PSReadLineOptions
 
 $PSStyle.FileInfo.Directory = "`e[35;1m"
 
-Set-PSReadLineOption @PSReadLineOptions
+# -- Custom Enter Key Handler --
+# you can enter directly 'D:/stuff' and press enter,
+# and it'll automatically accepted as 'cd D:/stuff'.
+# it only affects drive-style path, so other command should be behave normally
+$CdEnterHandler = @{
+    Key = 'Enter'
+    LongDescription  = 'Auto prepend `cd` into drive-style path'
+    ScriptBlock = {
+        param($key)
+
+        $line = $null
+        $cursor = $null
+        [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
+
+        if ($line -match '^[A-Za-z]:[/].*') {
+            add-content 'D:/experiment/enterHandler.tmp' "intercepted: $line";
+            # Clear line
+            [Microsoft.PowerShell.PSConsoleReadLine]::replace(0, $line.length, '');
+            # Insert prefix `cd`
+            [Microsoft.PowerShell.PSConsoleReadLine]::Insert("cd $line")
+        }
+
+        [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine();
+    }
+}
+Set-PSReadLineKeyHandler @CdEnterHandler
+
 # ❥ Notes (for me)
 # ───────────────--------------------------------------------------------───────────────────────────🐰
 

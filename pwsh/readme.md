@@ -46,15 +46,15 @@ Below is a categorized overview of **everything** defined in my `profile.ps1`.
 
 ### Search & Web Helpers
 
-I use brave for my browser, so if you use other (Chrome, Firefox, etc), remember to change it with yours.
+I use zen for my browser, so if you use other (Chrome, Firefox, etc), remember to change it with yours.
 also, don't forget to put the executable path to the PATH env or put it into variable.
 
-* `search` — Brave search with free‑form queries
+* `search` — Zen search with free‑form queries
 * `why` — search prefixed with “why …”
 * `howtf` — search prefixed with “how tf …”
 * `wtf` — search prefixed with “wtf …”
 * `translate` — open Google Translate (EN↔ID), supports `-r` for reverse mode (ID↔EN)
-* `open` — open URL using Brave
+* `open` — open URL using Zen 
 
 ---
 
@@ -79,7 +79,7 @@ also, don't forget to put the executable path to the PATH env or put it into var
 
 ### Others (?)
 
-* `get-func` — print the source of my defined function
+* `get-func` — print the source of my defined function, or definition of external function
 * `hr` — draw horizontal ruler relative to terminal width
 * `clearl` — clear screen and run `fastfetch`
 * `clearo` — reload the PowerShell profile
@@ -101,3 +101,25 @@ Anything involving arguments or logic becomes a function.
 * `wth` → `wtf`
 * `omp` → `oh-my-posh`
 * `yabc` → `yasbc`
+
+---
+
+### PSReadline Key Handlers
+
+These are not a function. It modify how key behave before the command is executed. (in simple word, it's a key handler🐰)
+
+ *  **Auto `cd` Enter Handler**
+
+It detects drive-style paths and automatically add `cd` before execution. This means u don’t need to manually type cd everytime you want to change directories. well, in practice, this is most useful when switching between drives, since it requires a full absolute path.
+    
+EXAMPLE:
+``` bash
+  $ pwd
+    C:/Users/user/
+  $ D:/experiment
+  $ pwd
+    D:/experiment
+  $ C:/Downloads
+  $ pwd
+    C:/Downloads
+```
