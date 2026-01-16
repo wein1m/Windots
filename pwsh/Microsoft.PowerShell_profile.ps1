@@ -890,7 +890,79 @@ function put {
     }
     catch {
         write-host -foregroundColor Magenta "ERRORRR OCCURREDDD~~ $($_.Exception.Message)";
-        write-host -foregroundColor cyan $_.Exception.GetType();
+    }
+}
+
+function write-hostCenter {
+    <#
+    .SYNOPSIS
+        echo text with the center alignment and the ability to use foregroundColor
+
+    .EXAMPLE
+        write-hostCenter yokoso~!
+
+        echo "yokoso~!" in the center of your terminal windows (horizontally)
+
+    .EXAMPLE
+        write-hostCenter "Hii there" -foregroundColor cyan
+        echo "Hii there" with cyan text color and the center alignment 
+    #>
+    param (
+        [string]$Message,
+        [string]$ForegroundColor = "white"
+    )
+    $consoleWidth = [console]::WindowWidth
+    $startPosition = [math]::Floor(($consoleWidth - $Message.Length) / 2)
+    $padding = " " * $startPosition
+
+    Write-Host "$padding$Message" -ForegroundColor $ForegroundColor
+}
+
+function jurnal {
+    <#
+    .SYNOPSIS
+        track of what you've done today right inside your terminal.
+
+    .NOTES
+        remember to change the $path with the fullpath of your jurnal.
+
+    .DESCRIPTION
+        A tool to easily keep track of your jurnals.
+
+        You can typed the desc without wrapping them using quotes or whatsoever, since it collects all the arguments passed as a whole string.
+
+        It's also using the ">>" sign, so it'll append the new entry to the newline of the specified file in $path.
+        
+    .EXAMPLE
+        jurnal learning 3d modeling using blender
+
+        it'll append "Thu, 15 Jan 2026    learning 3d modeling using blender"
+        
+    #>
+    Param(
+        [Parameter(ValueFromRemainingArguments=$true)]
+        [String[]]$descs
+    )
+
+    $path = "D:/kodingAKademi/jurnal/jurnal.txt";
+
+    if (!$descs) {
+        write-host -foregroundColor Magenta "I can't read your mind, bun.. tell me what have you done today`n";
+        write-host "Usage: jurnal [what have you done today] `n";
+        break;
+    }
+
+    $date = get-date -uformat "%a, %d %b %Y";
+    $desc = $descs -join ' ';
+
+    try {
+        "$($date)`t $desc" >> $path;
+        write-hostCenter -foregroundColor cyan "Yayy~! Otsukaree~🐰 `n"
+        # forEach cuz if i just piped them into echo, it'll ignored the newline
+        cat $path -tail 5 | forEach { write-host $_}
+    }
+    catch {
+        write-host -foregroundColor Magenta "ERRORRR OCCURREDDD~~ $($_.Exception.Message)";
     }
 }
 
@@ -941,7 +1013,7 @@ $CdEnterHandler = @{
         $cursor = $null
         [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
 
-        if ($line -match '^[A-Za-z]:[/].*') {
+        if ($line -match '^[A-Za-z]:[\\/].*') {
             add-content 'D:/experiment/enterHandler.tmp' "intercepted: $line";
             # Clear line
             [Microsoft.PowerShell.PSConsoleReadLine]::replace(0, $line.length, '');

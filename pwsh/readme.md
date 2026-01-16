@@ -65,6 +65,7 @@ also, don't forget to put the executable path to the PATH env or put it into var
 * `clangd` — generate `.clangd` config from predefined presets
 * `pwsh-big` — open Windows Terminal centered with large size (i usually use 80x17)
 * `komom` — start glazewm & yasb, support `-stop` or `-n` to stop them
+* `jurnal` — keep a short daily track of what you've done today.
 
 ---
 
@@ -84,6 +85,8 @@ also, don't forget to put the executable path to the PATH env or put it into var
 * `clearl` — clear screen and run `fastfetch`
 * `clearo` — reload the PowerShell profile
 * `ompSimple` — switch to a minimal Oh‑My‑Posh theme
+* `write-hostCenter` — `write-host` but with center alignment
+
   
 ---
 
