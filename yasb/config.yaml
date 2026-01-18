@@ -39,12 +39,12 @@ bars:
       ]
       center: [
         "clock",
-        "apps"
       ]
       right: [
         "media",
         "volume",
         "battery",
+        "wifi",
         "power_menu",
         ]
 widgets:
@@ -61,54 +61,70 @@ widgets:
       power_menu: false
       blur: true
   media:
-    type: "yasb.media.MediaWidget"
-    options:
-      label: "{artist} - {title}"
-      label_alt: "{title}"
-      max_field_size:
-        label: 24
-        label_alt: 24
-      show_thumbnail: true
-      controls_only: false
-      controls_left: true
-      hide_empty: true
-      thumbnail_alpha: 40
-      thumbnail_padding: 24
-      thumbnail_corner_radius: 0
-      thumbnail_edge_fade: true
-      icons:
-        prev_track: "\udb81\udcae"
-        next_track: "\udb81\udcad"
-        play: "\udb81\udc0a"
-        pause: "\udb80\udfe4"
-    callbacks:
-      on_left: "context_menu"
-      on_middle: "do_nothing"
-      on_right: "toggle_label"
+      type: "yasb.media.MediaWidget"
+      options:
+        label: "{title} - {title}"
+        label_alt: "{artist} - {title}"
+        max_field_size:
+          label: 20 
+          label_alt: 20 
+        show_thumbnail: false
+        controls_only: false
+        controls_left: true
+        hide_empty: true
+        thumbnail_alpha: 250
+        thumbnail_padding: 8
+        thumbnail_corner_radius: 0
+        callbacks:
+          on_left: "toggle_media_menu"
+          on_middle: "do_nothing"
+          on_right: "toggle_label"
+        icons:
+          prev_track: ""
+          next_track: ""
+          play: "<span>\uf001</span>"
+          pause: "<span>\uf001</span>"
+        media_menu:
+          blur: false
+          round_corners: true
+          round_corners_type: "normal"
+          border_color: "system"
+          alignment: "right"
+          direction: "down"
+          offset_top: 6
+          offset_left: -2
+          thumbnail_corner_radius: 2
+          thumbnail_size: 75
+          max_title_size: 15
+          max_artist_size: 15
+          show_source: false
+        media_menu_icons:
+          play: "\uf04b"
+          pause: "\uf04c"
+          prev_track: "\uf04a"
+          next_track: "\uf04e"
   active_window:
     type: "yasb.active_window.ActiveWindowWidget"
     options:
       label: "{win[title]}"
       label_alt: "[class_name='{win[class_name]}' exe='{win[process][name]}' hwnd={win[hwnd]}]"
-      label_no_window: ""
+      label_no_window: "🐰 Enjoying desktop~"
       label_icon: true
       label_icon_size: 14
-      max_length: 56
+      max_length: 30
       max_length_ellipsis: "..."
       monitor_exclusive: true
   clock:
     type: "yasb.clock.ClockWidget"
-    calendar: 
-      blur: true
-      round_corners: true
-      round_corners_type: "normal"
-      border_color: "system"
-      alignment: "center"
-      direction: "down"
-    callbacks:
-      on_left: "toggle_calendar"
-      on_middle: "context_menu"
-      on_right: "toggle_label"
+    options:
+      label: "\uef37 {%a %b %d - %I:%M %p}"
+      label_alt: "\uef37 {%A, %d %B %Y %I:%M:%S %p}"
+      timezones: []
+      calendar:
+        show_holidays: true
+        direction: down
+        alignment: "center"
+        holiday_color: "#FF6464"
   glazewm_workspaces:
     type: "glazewm.workspaces.GlazewmWorkspacesWidget"
     options:
@@ -180,16 +196,25 @@ widgets:
     options:
       label: "<span>{icon}</span> {level}"
       label_alt: "{volume}"
-      tooltip: true
       volume_icons:
-        - "\ueee8"
-        - "\uf026"
-        - "\uf027"
-        - "\uf027"
-        - "\uf028"
+        - "\ueee8"  # Icon for muted
+        - "\uf026"  # Icon for 0-10% volume
+        - "\uf027"  # Icon for 11-30% volume
+        - "\uf027"  # Icon for 31-60% volume
+        - "\uf028"  # Icon for 61-100% volume
+      audio_menu:
+        blur: true
+        round_corners: true
+        round_corners_type: 'normal'
+        alignment: 'right'
+        direction: 'down'
+        show_apps: true
+        show_app_labels: false 
+        show_app_icons: true 
+        show_apps_expanded: false 
       callbacks:
-        on_left: "toggle_mute"
-        on_right: "exec cmd.exe /c start ms-settings:sound"
+        on_left: "toggle_volume_menu"
+        on_right: "toggle_mute"
   power_menu:
     type: "yasb.power_menu.PowerMenuWidget"
     options:
@@ -206,41 +231,53 @@ widgets:
         hibernate: ["\uf28e", "Hibernate"]
         sleep: ["\u23fe", "Sleep"]
         cancel: ["", "Cancel"]
-  apps:
-    type: "yasb.applications.ApplicationsWidget"
-    options:
-      container_padding:
-        top: 0
-        left: 8
-        bottom: 0
-        right: 8
-      label: "{data}"
-      app_list:
-        - { icon: "\uf422", launch: "search" }
-        - { icon: "\ueb03", launch: "cmd /c Taskmgr" }
-        - { icon: "\udb80\ude39",launch: "C:\\Program Files\\Zen Browser\\zen.exe" }
   battery:
     type: "yasb.battery.BatteryWidget"
     options:
-      label: "<span>{icon}</span> {percent}%"
-      label_alt: "<span>{icon}</span> {percent}% | time: {time_remaining}"
-      update_interval: 5000
-      time_remaining_natural: True
-      hide_unsupported: True
-    charging_options:
-      icon_format: "{charging_icon}"
-      blink_charging_icon: true
-      blink_interval: 500
-    status_thresholds:
-      critical: 10
-      low: 25
-      medium: 75
-      high: 95
-      full: 100
-    status_icons:
-      icon_charging: "\uf0e7"
-      icon_critical: "\uf244"
-      icon_low: "\uf243"
-      icon_medium: "\uf242"
-      icon_high: "\uf241"
-      icon_full: "\uf240"
+      label: "{icon} {percent}%"
+      label_alt: "{icon}"
+      charging_options:
+        icon_format: "{charging_icon}"
+      status_icons:
+        icon_charging: "\udb80\udc84"
+        icon_critical: "\udb80\udc7a"
+        icon_low: "\udb80\udc7b"
+        icon_medium: "\udb80\udc7e"
+        icon_high: "\udb80\udc80"
+        icon_full: "\udb80\udc79"
+      status_thresholds:
+        critical: 10
+        low: 30
+        medium: 75
+        high: 85
+        full: 100
+  wifi:
+      type: "yasb.wifi.WifiWidget"
+      options:
+        label: "<span>{wifi_icon}</span>"
+        update_interval: 5000
+        ethernet_icon: "\ue673"
+        ethernet_label_alt: "{ip_addr}"
+        animation:
+          enabled: true
+          duration: 100
+          type: "fadeInOut"
+        callbacks:
+          on_left: "toggle_menu"
+          on_middle: "do_nothing"
+          on_right: "toggle_label"
+        menu_config:
+          blur: false
+          round_corners: true
+          round_corners_type: "normal"
+          alignment: "right"
+          direction: "down"
+          offset_top: 5
+          offset_left: -1
+          wifi_icons_unsecured: [
+            "\uec3c",
+            "\uec3d",
+            "\uec3e",
+            "\uec3f",
+          ]
+
