@@ -21,7 +21,8 @@ window_effects:
 
     transparency:
       enabled: true 
-      opacity: '99.5%'
+      opacity: '100%'
+      # opacity: '99.5%'
 
   other_windows:
     border:
@@ -34,7 +35,8 @@ window_effects:
       style: 'rounded'
     transparency:
       enabled: true
-      opacity: '98%'
+      opacity: '100%'
+      # opacity: '98%'
 
 window_behavior:
   initial_state: 'tiling'
@@ -62,12 +64,14 @@ window_rules:
     match:
       - window_process: { equals: 'Photos' }
       - window_process: { equals: 'SystemSettings'}
+      - window_process: { equals: 'wezterm-gui'}
 
   - commands: ['ignore']
     match:
       - window_process: { equals: 'zebar' }
       - window_process: { equals: 'Flow.Launcher' }
       - window_process: { equals: 'yasb' }
+      - window_process: { equals: 'osu!' }
 
       # Ignores picture-in-picture windows for browsers.
       - window_title: { regex: '[Pp]icture.in.[Pp]icture' }
