@@ -32,12 +32,13 @@ This github repo containing several configurations, including:
 
 ## 📸Screenshots
 <img src="/screenshots/Overall.webp" width="750" alt="Overall preview"/>
+<img src="/screenshots/Discord.png" width="750" alt="Discord preview"/>
+<img src="/screenshots/Spotify.png" width="750" alt="Spotify preview"/>
 <img src="/screenshots/FlowLauncher.webp" width="750" alt="FlowLauncher preview"/>
 <img src="/screenshots/Terminal.webp" width="750" alt="Terminal preview"/> 
 <img src="/screenshots/vscode.webp" width="750" alt="Visual Studio Code preview"/>
 <img src="/screenshots/Browser.webp" width="750" alt="Zen Browser preview"/>
-<img src="/screenshots/Discord.webp" width="750" alt="Discord preview"/>
-<img src="/screenshots/Spotify.webp" width="750" alt="Spotify preview"/>
+
 
 ## 📝 Notes
 These are things that i used as-is without custom modifications so i didn't put them in repo
