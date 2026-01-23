@@ -966,6 +966,17 @@ function jurnal {
     }
 }
 
+function get-jurnal {
+    $path = "D:/kodingAKademi/jurnal/jurnal.txt";
+
+    try {
+        cat $path -tail 5 | forEach { write-host $_}
+    }
+    catch {
+        write-host -foregroundColor Magenta "ERRORRR OCCURREDDD~~ $($_.Exception.Message)";
+    }
+}
+
 # ❥ Shell & Prompt Configurations
 # ───────────────--------------------------------------------------------───────────────────────────🐰
 
