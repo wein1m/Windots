@@ -18,17 +18,21 @@ The part I like the most in this repo is the PowerShell Core `$PROFILE`, which c
 
 ## 🐇Features
 This github repo containing several configurations, including:
-- Fastfetch (to flex🐇)
-- FlowLauncher (app launcher)
-- Komorebi (windows manager)
-- GlazeWM (windows manager)
-- Neovim (text editor)
-- Oh-My-Posh (prompt engine)
-- Powershell Core (shell)
-- Visual Studio Code (text editor)
-- Wezterm (terminal emulator)
-- Windows Terminal (terminal emulator)
-- Yasb (status bar)
+- <a href="/fastfetch">FastFetch</a> (to flex🐇)
+- <a href="/flowLauncher">FlowLauncher</a> (app launcher)
+- <a href="/komorebi">Komorebi</a> (windows manager)
+- <a href="/glazewm">GlazeWM</a> (windows manager)
+- <a href="/nvim">Neovim</a> (text editor)
+- <a href="/omp">Oh-My-Posh</a> (prompt engine)
+- <a href="/pwsh">Powershell Core</a> (shell)
+- <a href="/vscode">Visual Studio Code</a> (text editor)
+- <a href="/wezterm">Wezterm</a> (terminal emulator)
+- <a href="/wt">Windows Terminal</a> (terminal emulator)
+- <a href="/yasb">Yasb</a> (status bar)
+- <a href="/BetterDiscord">BetterDiscord</a> (discord mod)
+- <a href="spicetify">Spicetify</a> (spotify mod)
+- <a href="/nilesoft-shell">Nilesoft-Shell</a> (context menu customizer)
+- <a href="tacky-borders">Tacky Borders</a> (window border)
 
 ## 📸Screenshots
 <img src="/screenshots/Overall.webp" width="750" alt="Overall preview"/>
@@ -42,8 +46,6 @@ This github repo containing several configurations, including:
 
 ## 📝 Notes
 These are things that i used as-is without custom modifications so i didn't put them in repo
-- Discord is themed using **BetterDiscord** (`system24`)
-- Spotify is themed using **Spicetify** (`text`)
 - Wallpaper is from **Wallpaper Engine** (`Rainy Day`)
 - File Manager is **yazi** (can installed using scoop)
 
