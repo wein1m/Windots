@@ -1,8 +1,15 @@
-# Wein's personal Windows dotfiles 🐰
+<h1 align="center" >Wein's personal Windows dotfiles 🐰</h1> 
+
+<h3 align="center"> ━━━━━━  ❖  ━━━━━━ </h3>
 
 Minimal, Windows-friendly dotfiles focused on PowerShell, Wezterm, and other cool things.
 
 ![Windots Overview](/screenshots/Terminal.webp)
+
+> [!IMPORTANT]
+> I've moved to arch linux, so this repo is no longer maintained and might not work perfectly out of the box.
+> Feel free to use this as the base and tweak things to match your setups. (or just open an issue for help)
+> Happy adventuring!
 
 <details>
 <summary><b>The backstory🐇</b></summary>
@@ -34,6 +41,9 @@ This github repo containing several configurations, including:
 - <a href="/nilesoft-shell">Nilesoft-Shell</a> (context menu customizer)
 - <a href="tacky-borders">Tacky Borders</a> (window border)
 
+:warning: **Note**: you might notice some tools overlaping purpose, like komorebi and glazeWM which is both for tiling window manager. Because my repo is mainly a collection of my configs, use any that you like, that suits your workflow and setups!🐇
+
+
 ## 📸Screenshots
 <img src="/screenshots/Overall.webp" width="750" alt="Overall preview"/>
 <img src="/screenshots/Discord.png" width="750" alt="Discord preview"/>
@@ -47,5 +57,5 @@ This github repo containing several configurations, including:
 ## 📝 Notes
 These are things that i used as-is without custom modifications so i didn't put them in repo
 - Wallpaper is from **Wallpaper Engine** (`Rainy Day`)
-- File Manager is **yazi** (can installed using scoop)
+- File Manager is **yazi** (can be installed using scoop)
 
